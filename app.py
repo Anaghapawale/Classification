@@ -4,7 +4,7 @@ import pandas as pd
 import pickle
 
 # load the model from the disk
-loaded_model=pickle.load(open('random_forest_regression_model.pkl','rb'))
+loaded_model=pickle.load(open('randomforest_model.pkl','rb'))
 app = Flask(__name___)
 
 @app.route('/')
@@ -13,7 +13,7 @@ def home():
  
 @app.route('/predict',methods=['POST'])
 def predict():
-    df=pd.read_csv('real_2018.csv')
+    df=pd.read_csv('C:/Users/Aumni/Documents/ML Project/Training_4classes (1).csv')
     my_prediction=loaded_model.predict(df.iloc[:,:-1].values)
     my_prediction=my_prediction.tolist()
     return render_template('result.html',prediction=my_prediction)
